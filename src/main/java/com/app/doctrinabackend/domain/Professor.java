@@ -10,20 +10,22 @@ public class Professor implements Serializable {
 	private String email;
 	//senha
 	private String instituicao;
+	private String foto;
 	
 	//cardinalidade muitos profs para 1 adm
-	private Administrador administrador;
+	//private Administrador administrador;
 	
 	public Professor() {
 	}
 
-	public Professor(Integer id, String nome, String email, String instituicao, Administrador administrador) {
+	public Professor(Integer id, String nome, String email, String instituicao, String foto) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.instituicao = instituicao;
-		this.administrador = administrador;
+		this.foto = foto;
+		//this.administrador = administrador;
 	}
 
 	public Integer getId() {
@@ -57,7 +59,7 @@ public class Professor implements Serializable {
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
 	}
-
+/*
 	public Administrador getAdministrador() {
 		return administrador;
 	}
@@ -65,7 +67,15 @@ public class Professor implements Serializable {
 	public void setAdministrador(Administrador administrador) {
 		this.administrador = administrador;
 	}
+*/
+	public String getFoto() {
+		return foto;
+	}
 
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,9 +99,5 @@ public class Professor implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
-	
-	
-	
+	}	
 }
