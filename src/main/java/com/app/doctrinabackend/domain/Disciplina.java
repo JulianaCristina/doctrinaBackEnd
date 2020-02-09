@@ -29,7 +29,7 @@ public class Disciplina implements Serializable {
     @JoinColumn(name="professor_id")
     private Professor professor;
 
-    // disciplina tem varios modulos, foi mapeado pelo campo cliente
+    // disciplina tem varios modulos, foi mapeado pelo campo disciplina
     @JsonManagedReference
     @OneToMany(mappedBy = "disciplina")
     private List<Modulo> modulos = new ArrayList<>();

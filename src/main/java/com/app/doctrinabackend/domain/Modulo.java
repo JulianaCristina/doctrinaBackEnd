@@ -1,7 +1,9 @@
 package com.app.doctrinabackend.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.app.doctrinabackend.domain.enums.NivelDificuldade;
 import com.app.doctrinabackend.domain.enums.Tag;
@@ -38,6 +41,11 @@ public class Modulo implements Serializable {
      * INSERT INTO MODULO (DATA_REFORCO, DESCRICAO, FEROMONIO, LINK_VIDEO, NIVEL_DIFICULDADE, NOME, NOTA_MODULO, PDF_MATERIA, TAG, TEMPO_SEM_REFORCO, DISCIPLINA_ID)
 	   VALUES ('2018-10-20','descricao do modulo',2,'link video',1,'estatistica',5.0,'pdf mat',2,'2018-10-10',1);
      */
+    
+    // modulo tem varias atividades, foi mapeado pelo campo modulo
+ 	@OneToMany(mappedBy = "modulo")
+ 	private List<Atividade> atividades = new ArrayList<>();
+ 	
 
     // modulo tem 1 disciplina
     @JsonBackReference
