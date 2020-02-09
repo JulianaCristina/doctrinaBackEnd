@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 
 import com.app.doctrinabackend.domain.enums.NivelDificuldade;
 import com.app.doctrinabackend.domain.enums.Tag;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Modulo implements Serializable {
@@ -39,6 +40,7 @@ public class Modulo implements Serializable {
      */
 
     // modulo tem 1 disciplina
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="disciplina_id")
     private Disciplina disciplina;
