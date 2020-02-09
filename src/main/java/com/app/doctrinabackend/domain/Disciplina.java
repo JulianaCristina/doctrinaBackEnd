@@ -43,6 +43,7 @@ public class Disciplina implements Serializable {
         this.id = id;
         this.nome = nome;
         this.foto = foto;
+        this.professor = professor;
     }
 
     public Integer getId() {
@@ -83,8 +84,8 @@ public class Disciplina implements Serializable {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
-    }
-
+    }    
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
