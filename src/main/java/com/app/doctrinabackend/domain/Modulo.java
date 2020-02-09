@@ -1,12 +1,18 @@
 package com.app.doctrinabackend.domain;
 
-import com.app.doctrinabackend.domain.enums.NivelDificuldade;
-import com.app.doctrinabackend.domain.enums.Tag;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.app.doctrinabackend.domain.enums.NivelDificuldade;
+import com.app.doctrinabackend.domain.enums.Tag;
 
 @Entity
 public class Modulo implements Serializable {
@@ -19,12 +25,18 @@ public class Modulo implements Serializable {
     private String descricao;
     private String linkVideo;
     private String pdfMateria;
-    private Tag tag;
+    private Integer tag;
     private double notaModulo;
     private Integer nivelDificuldade; //aqui no codigo vai ser armazenado como um inteiro, porem para o mundo externo a classe vai expor um dado NivelDificuldade
     private Integer feromonio;
     private Date dataReforco;
     private Date tempoSemReforco;
+    
+    /*SQL TESTE*/
+    /*
+     * INSERT INTO MODULO (DATA_REFORCO, DESCRICAO, FEROMONIO, LINK_VIDEO, NIVEL_DIFICULDADE, NOME, NOTA_MODULO, PDF_MATERIA, TAG, TEMPO_SEM_REFORCO, DISCIPLINA_ID)
+	   VALUES ('2018-10-20','descricao do modulo',2,'link video',1,'estatistica',5.0,'pdf mat',2,'2018-10-10',1);
+     */
 
     // modulo tem 1 disciplina
     @ManyToOne
@@ -41,7 +53,7 @@ public class Modulo implements Serializable {
         this.descricao = descricao;
         this.linkVideo = linkVideo;
         this.pdfMateria = pdfMateria;
-        this.tag = tag;
+        this.tag = tag.getCod();
         this.notaModulo = notaModulo;
         this.nivelDificuldade = nivelDificuldade.getCod();
         this.feromonio = feromonio;
@@ -91,11 +103,11 @@ public class Modulo implements Serializable {
     }
 
     public Tag getTag() {
-        return tag;
+        return Tag.ToEnum(tag);
     }
 
     public void setTag(Tag tag) {
-        this.tag = tag;
+        this.tag = tag.getCod();
     }
 
     public double getNotaModulo() {
@@ -146,17 +158,29 @@ public class Modulo implements Serializable {
         this.disciplina = disciplina;
     }
 
-    // GERAR DNV O HASH CODE EQUALS
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Modulo)) return false;
-        Modulo modulo = (Modulo) o;
-        return id.equals(modulo.id);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Modulo other = (Modulo) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 }

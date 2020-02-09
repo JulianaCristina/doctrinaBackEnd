@@ -19,7 +19,7 @@ public enum Tag {
     public String getDescricao(){
         return descricao;
     }
-
+    
     // roda msm sem ter um objeto instanciado, por ser estatico
     public static Tag ToEnum(Integer cod){
         if (cod == null ){
