@@ -1,6 +1,8 @@
 package com.app.doctrinabackend.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Atividade implements Serializable {
@@ -26,6 +31,12 @@ public class Atividade implements Serializable {
     @ManyToOne
     @JoinColumn(name="modulo_id")
     private Modulo modulo;
+    
+    // pq uma atividade vai ter varias perguntas
+    // atividade tem varios perguntas, foi mapeado pelo campo atividade
+    @JsonManagedReference
+    @OneToMany(mappedBy = "atividade")
+    private List<Pergunta> perguntas = new ArrayList<>();
     
     public Atividade() {
     	
@@ -96,7 +107,7 @@ public class Atividade implements Serializable {
 
     public void setModulo(Modulo modulo) {
         this.modulo = modulo;
-    }    
+    }
 
 	@Override
 	public int hashCode() {

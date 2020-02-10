@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Pergunta implements Serializable {
@@ -21,11 +25,16 @@ public class Pergunta implements Serializable {
 	private String respCorreta;
 	private double pontosPergunta;
 	
+	// uma pergunta não pode pertencer a mais de uma atividade
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="atividade_id")
+    private Atividade atividade;
+	
 	public Pergunta() {
 	}
 
-	public Pergunta(Integer id, String pergunta, String respA, String respB, String respC, String respCorreta,
-			double pontosPergunta) {
+	public Pergunta(Integer id, String pergunta, String respA, String respB, String respC, String respCorreta, double pontosPergunta, Atividade atividade) {
 		super();
 		this.id = id;
 		this.pergunta = pergunta;
@@ -34,6 +43,7 @@ public class Pergunta implements Serializable {
 		this.respC = respC;
 		this.respCorreta = respCorreta;
 		this.pontosPergunta = pontosPergunta;
+		this.atividade = atividade;
 	}
 
 	public Integer getId() {
@@ -91,6 +101,14 @@ public class Pergunta implements Serializable {
 	public void setPontosPergunta(double pontosPergunta) {
 		this.pontosPergunta = pontosPergunta;
 	}
+	
+	public Atividade getAtividade() {
+        return atividade;
+    }
+
+    public void setAtividade(Atividade atividade) {
+        this.atividade = atividade;
+    }
 
 	@Override
 	public int hashCode() {
