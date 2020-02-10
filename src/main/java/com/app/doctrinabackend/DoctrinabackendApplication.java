@@ -9,8 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.app.doctrinabackend.domain.Administrador;
+import com.app.doctrinabackend.domain.Atividade;
 import com.app.doctrinabackend.domain.Disciplina;
 import com.app.doctrinabackend.domain.Modulo;
+import com.app.doctrinabackend.domain.Pergunta;
 import com.app.doctrinabackend.domain.Professor;
 import com.app.doctrinabackend.domain.enums.NivelDificuldade;
 import com.app.doctrinabackend.domain.enums.Tag;
@@ -64,37 +66,22 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		Modulo mod1 = new Modulo(null, "Módulo 1 de IA", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc1);
 		Modulo mod2 = new Modulo(null, "Módulo 1 de BD", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc2);
 		Modulo mod3 = new Modulo(null, "Módulo 2 de BD", "descricao do modulo 2", "link video modulo 2", "link pdf do modulo 2", Tag.NAO_FEITO, 9.0, NivelDificuldade.MEDIO, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc2);
-/*
+	
 		Atividade atividade1 = new Atividade(null, 3, 2, 0.0, 10, "foto atividade 1", mod1);
-		
-		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
-		ped1.setPagamento(pagto1);
+		Atividade atividade2 = new Atividade(null, 8, 10, 0.0, 2, "foto atividade 2", mod1);
+		Atividade atividade3 = new Atividade(null, 4, 6, 0.0, 1, "foto atividade 3", mod2);
+		Atividade atividade4 = new Atividade(null, 6, 5, 0.0, 5, "foto atividade 4", mod3);
 
-		Atividade atividade2 = new Atividade(null, 4, 3, 0.0, 8, "foto atividade 2", mod2);
-		mod2.setPagamento(atividade2);
-		
-		Atividade atividade3 = new Atividade(null, 4, 3, 0.0, 8, "foto atividade 3", mod2);
-		mod3.setPagamento(atividade3);
-
-		disc1.get.addAll(Arrays.asList(mod1, mod2, mod3));
-
-		moduloRepository.save(Arrays.asList(mod1, mod23, mod));
-		atividadeRepository.save(Arrays.asList(pagto1, pagto2));
-*/
-		
-		// como nao tem a de modulo, nao da pra fazer a de atividade
+		Pergunta pergunta1 = new Pergunta(null,"pergunta um","teste um","teste dois","teste tres","letra C", 10.5, atividade1);
+		Pergunta pergunta2 = new Pergunta(null,"pergunta dois","teste um","teste dois","teste tres","letra A", 2, atividade2);
+		Pergunta pergunta3 = new Pergunta(null,"pergunta tres","teste a","teste b","teste c","letra B", 4, atividade2);
 		
 		professorRepository.saveAll(Arrays.asList(prof1, prof2));
 		administradorRepository.saveAll(Arrays.asList(adm));
 		disciplinaRepository.saveAll(Arrays.asList(disc1, disc2, disc3));
 		moduloRepository.saveAll(Arrays.asList(mod1, mod2, mod3));
-
-		
-		
-		//nao da pra adc a de pergunta pq atividade nao ta pronta
-		// https://www.udemy.com/course/spring-boot-ionic/learn/lecture/8090550#questions no final
-		//Pergunta p1 = new Pergunta(null, "que cor eh a agua?", "agua eh azul", "agua eh verde", "agua eh vermelha", "letra A", 5);
-		//Pergunta p2 = new Pergunta(null, "pergunta dois", "teste um", "teste dois", "teste tres", "letra C", 10.5);
+		atividadeRepository.saveAll(Arrays.asList(atividade1, atividade2, atividade3, atividade4));
+		perguntaRepository.saveAll(Arrays.asList(pergunta1, pergunta2, pergunta3));
 	
 	}
 
