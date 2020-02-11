@@ -28,7 +28,6 @@ public class Aluno implements Serializable {
     private Integer id;
     private String nome;
     private String email;
-    private String senha;
     private String instituicao;
     private Integer formaAprendizagem; //aqui no codigo vai ser armazenado como um inteiro, porem para o mundo externo a classe vai expor um dado NivelDificuldade
     private Integer xp;
@@ -38,12 +37,11 @@ public class Aluno implements Serializable {
 
     }
 
-    public Aluno(Integer id, String nome, String email, String senha, String instituicao, FormaAprendizagem formaAprendizagem, Integer xp, String foto) {
+    public Aluno(Integer id, String nome, String email, String instituicao, FormaAprendizagem formaAprendizagem, Integer xp, String foto) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.setSenha(senha);
 		this.instituicao = instituicao;
 		this.formaAprendizagem = formaAprendizagem.getCod();
 		this.xp = xp;
@@ -72,14 +70,6 @@ public class Aluno implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public String getInstituicao() {
