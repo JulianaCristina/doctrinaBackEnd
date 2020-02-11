@@ -61,7 +61,7 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		Disciplina disc3 = new Disciplina(null, "BD", "foto de BD", prof2);
 	
 		//fazer instancia de modulo, mas nao sei fazer pq tem enum, olhar como ele fez a de cliente
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 		Modulo mod1 = new Modulo(null, "Módulo 1 de IA", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc1);
 		Modulo mod2 = new Modulo(null, "Módulo 1 de BD", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc2);
