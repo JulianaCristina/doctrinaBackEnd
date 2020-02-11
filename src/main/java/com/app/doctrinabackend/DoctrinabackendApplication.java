@@ -9,17 +9,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.app.doctrinabackend.domain.Administrador;
+import com.app.doctrinabackend.domain.Aluno;
 import com.app.doctrinabackend.domain.Atividade;
 import com.app.doctrinabackend.domain.Disciplina;
 import com.app.doctrinabackend.domain.Modulo;
+import com.app.doctrinabackend.domain.NotaDisciplina;
 import com.app.doctrinabackend.domain.Pergunta;
 import com.app.doctrinabackend.domain.Professor;
+import com.app.doctrinabackend.domain.enums.FormaAprendizagem;
 import com.app.doctrinabackend.domain.enums.NivelDificuldade;
 import com.app.doctrinabackend.domain.enums.Tag;
 import com.app.doctrinabackend.repositories.AdministradorRepository;
+import com.app.doctrinabackend.repositories.AlunoRepository;
 import com.app.doctrinabackend.repositories.AtividadeRepository;
 import com.app.doctrinabackend.repositories.DisciplinaRepository;
 import com.app.doctrinabackend.repositories.ModuloRepository;
+import com.app.doctrinabackend.repositories.NotaDisciplinaRepository;
 import com.app.doctrinabackend.repositories.PerguntaRepository;
 import com.app.doctrinabackend.repositories.ProfessorRepository;
 
@@ -43,6 +48,12 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PerguntaRepository perguntaRepository;
+	
+	@Autowired
+	private AlunoRepository alunoRepository;
+	
+	@Autowired
+	private NotaDisciplinaRepository notaDisciplinaRepository;
 	
 	
 	public static void main(String[] args) {
@@ -76,13 +87,33 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		Pergunta pergunta2 = new Pergunta(null,"pergunta dois","teste um","teste dois","teste tres","letra A", 2, atividade2);
 		Pergunta pergunta3 = new Pergunta(null,"pergunta tres","teste a","teste b","teste c","letra B", 4, atividade2);
 		
+		Aluno aluno1 = new Aluno(null, "Jaqueline Neves", "jaque@gmail.com", "iftm", FormaAprendizagem.VIDEO, 2, "foto de perfil jaque");
+		Aluno aluno2 = new Aluno(null, "Juliana Cristina", "juliana@gmail.com", "ufu", FormaAprendizagem.LEITURA, 3, "foto de perfil Juliana");
+
+		NotaDisciplina notaDisc1 = new NotaDisciplina(aluno1, disc1, 8.5);
+		NotaDisciplina notaDisc2 = new NotaDisciplina(aluno1, disc2, 9.0);
+		NotaDisciplina notaDisc3 = new NotaDisciplina(aluno2, disc2, 8.6);
+		
 		professorRepository.saveAll(Arrays.asList(prof1, prof2));
 		administradorRepository.saveAll(Arrays.asList(adm));
 		disciplinaRepository.saveAll(Arrays.asList(disc1, disc2, disc3));
 		moduloRepository.saveAll(Arrays.asList(mod1, mod2, mod3));
 		atividadeRepository.saveAll(Arrays.asList(atividade1, atividade2, atividade3, atividade4));
 		perguntaRepository.saveAll(Arrays.asList(pergunta1, pergunta2, pergunta3));
-	
+		alunoRepository.saveAll(Arrays.asList(aluno1, aluno2));
+		notaDisciplinaRepository.saveAll(Arrays.asList(notaDisc1, notaDisc2, notaDisc3));
+		
+		//Aluno tem essas notas aqui o 
+		/*
+		aluno1.getNotasDisc().addAll(Arrays.asList(notaDisc1, notaDisc2));
+		aluno2.getNotasDisc().addAll(Arrays.asList(notaDisc3));
+		*/
+		
+		//Disciplina conhecer as suas notas
+		/*
+		disc1.getNotasDisc().addAll(Arrays.asList(notaDisc1));
+		disc2.getNotasDisc().addAll(Arrays.asList(notaDisc2, notaDisc3));		
+		*/
 	}
 
 }

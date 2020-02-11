@@ -2,7 +2,9 @@ package com.app.doctrinabackend.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -34,6 +37,10 @@ public class Disciplina implements Serializable {
     @OneToMany(mappedBy = "disciplina")
     private List<Modulo> modulos = new ArrayList<>();
 
+	@JsonIgnore
+    @OneToMany(mappedBy="id.disciplina")
+    private Set<NotaDisciplina> notasDisc = new HashSet<>();
+    
     public Disciplina(){
 
     }
@@ -44,6 +51,15 @@ public class Disciplina implements Serializable {
         this.nome = nome;
         this.foto = foto;
         this.professor = professor;
+    }
+    
+	@JsonIgnore
+    public List<Aluno> getAlunos() {
+    	List<Aluno> lista = new ArrayList<>();
+    	for (NotaDisciplina x : notasDisc) {
+    		lista.add(x.getAluno());
+    	}
+    	return lista;
     }
 
     public Integer getId() {
@@ -86,6 +102,14 @@ public class Disciplina implements Serializable {
         this.professor = professor;
     }    
     
+    public Set<NotaDisciplina> getNotasDisc() {
+		return notasDisc;
+	}
+
+	public void setNotasDisc(Set<NotaDisciplina> notasDisc) {
+		this.notasDisc = notasDisc;
+	}
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,5 +134,4 @@ public class Disciplina implements Serializable {
 			return false;
 		return true;
 	}
-
 }

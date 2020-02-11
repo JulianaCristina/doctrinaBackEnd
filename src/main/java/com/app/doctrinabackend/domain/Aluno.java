@@ -1,23 +1,17 @@
 package com.app.doctrinabackend.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.app.doctrinabackend.domain.enums.FormaAprendizagem;
-import com.app.doctrinabackend.domain.enums.NivelDificuldade;
-import com.app.doctrinabackend.domain.enums.Tag;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Aluno implements Serializable {
@@ -32,6 +26,10 @@ public class Aluno implements Serializable {
     private Integer formaAprendizagem; //aqui no codigo vai ser armazenado como um inteiro, porem para o mundo externo a classe vai expor um dado NivelDificuldade
     private Integer xp;
     private String foto;
+    
+	@JsonIgnore
+    @OneToMany(mappedBy="id.aluno")
+    private Set<NotaDisciplina> notasDisc = new HashSet<>();
     
     public Aluno (){
 
@@ -102,6 +100,14 @@ public class Aluno implements Serializable {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	
+	public Set<NotaDisciplina> getNotasDisc() {
+		return notasDisc;
+	}
+
+	public void setNotasDisc(Set<NotaDisciplina> notasDisc) {
+		this.notasDisc = notasDisc;
 	}
 
 	@Override
