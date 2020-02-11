@@ -74,9 +74,9 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		//fazer instancia de modulo, mas nao sei fazer pq tem enum, olhar como ele fez a de cliente
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Modulo mod1 = new Modulo(null, "Módulo 1 de IA", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc1);
-		Modulo mod2 = new Modulo(null, "Módulo 1 de BD", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc2);
-		Modulo mod3 = new Modulo(null, "Módulo 2 de BD", "descricao do modulo 2", "link video modulo 2", "link pdf do modulo 2", Tag.NAO_FEITO, 9.0, NivelDificuldade.MEDIO, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc2);
+		Modulo mod1 = new Modulo(null, "Módulo 1 de TCC", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc1);
+		Modulo mod2 = new Modulo(null, "Módulo 1 de IA", "descricao do modulo 1", "link video modulo 1", "link pdf do modulo 1", Tag.FEITO, 5.0, NivelDificuldade.FACIL, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc2);
+		Modulo mod3 = new Modulo(null, "Módulo 2 de IA", "descricao do modulo 2", "link video modulo 2", "link pdf do modulo 2", Tag.NAO_FEITO, 9.0, NivelDificuldade.MEDIO, 2, sdf.parse("30/09/2017 10:32"), sdf.parse("30/02/2020 10:32"), disc2);
 	
 		Atividade atividade1 = new Atividade(null, 3, 2, 0.0, 10, "foto atividade 1", mod1);
 		Atividade atividade2 = new Atividade(null, 8, 10, 0.0, 2, "foto atividade 2", mod1);
@@ -100,20 +100,20 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		moduloRepository.saveAll(Arrays.asList(mod1, mod2, mod3));
 		atividadeRepository.saveAll(Arrays.asList(atividade1, atividade2, atividade3, atividade4));
 		perguntaRepository.saveAll(Arrays.asList(pergunta1, pergunta2, pergunta3));
-		alunoRepository.saveAll(Arrays.asList(aluno1, aluno2));
-		notaDisciplinaRepository.saveAll(Arrays.asList(notaDisc1, notaDisc2, notaDisc3));
-		
+				
 		//Aluno tem essas notas aqui o 
-		/*
+		
 		aluno1.getNotasDisc().addAll(Arrays.asList(notaDisc1, notaDisc2));
 		aluno2.getNotasDisc().addAll(Arrays.asList(notaDisc3));
-		*/
+		
 		
 		//Disciplina conhecer as suas notas
-		/*
+		
 		disc1.getNotasDisc().addAll(Arrays.asList(notaDisc1));
-		disc2.getNotasDisc().addAll(Arrays.asList(notaDisc2, notaDisc3));		
-		*/
+		disc2.getNotasDisc().addAll(Arrays.asList(notaDisc2, notaDisc3));	
+		
+		alunoRepository.saveAll(Arrays.asList(aluno1, aluno2));
+		notaDisciplinaRepository.saveAll(Arrays.asList(notaDisc1, notaDisc2, notaDisc3));		
 	}
 
 }
