@@ -53,6 +53,7 @@ public class Disciplina implements Serializable {
         this.professor = professor;
     }
     
+    //uma disciplina conhece os alunos dela
 	@JsonIgnore
     public List<Aluno> getAlunos() {
     	List<Aluno> lista = new ArrayList<>();

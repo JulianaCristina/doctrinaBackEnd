@@ -90,10 +90,6 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		Aluno aluno1 = new Aluno(null, "Jaqueline Neves", "jaque@gmail.com", "iftm", FormaAprendizagem.VIDEO, 2, "foto de perfil jaque");
 		Aluno aluno2 = new Aluno(null, "Juliana Cristina", "juliana@gmail.com", "ufu", FormaAprendizagem.LEITURA, 3, "foto de perfil Juliana");
 
-		NotaDisciplina notaDisc1 = new NotaDisciplina(aluno1, disc1, 8.5);
-		NotaDisciplina notaDisc2 = new NotaDisciplina(aluno1, disc2, 9.0);
-		NotaDisciplina notaDisc3 = new NotaDisciplina(aluno2, disc2, 8.6);
-		
 		professorRepository.saveAll(Arrays.asList(prof1, prof2));
 		administradorRepository.saveAll(Arrays.asList(adm));
 		disciplinaRepository.saveAll(Arrays.asList(disc1, disc2, disc3));
@@ -101,19 +97,21 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		atividadeRepository.saveAll(Arrays.asList(atividade1, atividade2, atividade3, atividade4));
 		perguntaRepository.saveAll(Arrays.asList(pergunta1, pergunta2, pergunta3));
 				
-		//Aluno tem essas notas aqui o 
+		NotaDisciplina notaDisc1 = new NotaDisciplina(aluno1, disc1, 8.5);
+		NotaDisciplina notaDisc2 = new NotaDisciplina(aluno1, disc2, 9.0);
+		NotaDisciplina notaDisc3 = new NotaDisciplina(aluno2, disc2, 8.6);
 		
+		//Aluno tem essas notas aqui o 
 		aluno1.getNotasDisc().addAll(Arrays.asList(notaDisc1, notaDisc2));
 		aluno2.getNotasDisc().addAll(Arrays.asList(notaDisc3));
 		
 		
 		//Disciplina conhecer as suas notas
-		
 		disc1.getNotasDisc().addAll(Arrays.asList(notaDisc1));
 		disc2.getNotasDisc().addAll(Arrays.asList(notaDisc2, notaDisc3));	
 		
 		alunoRepository.saveAll(Arrays.asList(aluno1, aluno2));
-		notaDisciplinaRepository.saveAll(Arrays.asList(notaDisc1, notaDisc2, notaDisc3));		
+		notaDisciplinaRepository.saveAll(Arrays.asList(notaDisc1, notaDisc2, notaDisc3));	
 	}
 
 }
