@@ -1,5 +1,6 @@
 package com.app.doctrinabackend.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class ProfessorService {
 			throw new DataIntegrityException("Não é possível excluir um Professor que ministre alguma Disciplina");
 		}
 	}  
+    
+    //LISTAR TODOS
+    public List<Professor> findAll(){
+    	return repo.findAll();
+    }
     
 }

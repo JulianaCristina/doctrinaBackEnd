@@ -1,6 +1,7 @@
 package com.app.doctrinabackend.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,27 +29,35 @@ public class ProfessorResource {
 		return ResponseEntity.ok(obj);
 	}
 
-	//INSERIR
+	// INSERIR
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Professor obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build(); //cria o codigo 201, que é o codigo de cadastro
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build(); // cria o codigo 201, que é o codigo de cadastro
 	}
-	
-	//ATUALIZAR
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+
+	// ATUALIZAR
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Professor obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-	
-	//DELETAR
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+
+	// DELETAR
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+
+	// listar todos os professores
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Professor>> findAll() {
+		List<Professor> list = service.findAll();
+		return ResponseEntity.ok(list);
+	}
+	
+	//obs.: não fiz Professor DTO, pois já retornava apenas os dados de professor
 }
