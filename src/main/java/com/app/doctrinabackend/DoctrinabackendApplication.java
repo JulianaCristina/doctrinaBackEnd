@@ -64,8 +64,12 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Administrador adm = new Administrador(1, "admin", "admin@gmail.com", "foto aqui");
 		
-		Professor prof1 = new Professor(null,"danielli","dani@gmail.com", "iftm","ft dani");
+		Professor prof1 = new Professor(null,"Danielli","dani@gmail.com", "iftm","ft dani");
 		Professor prof2 = new Professor(null,"tâmara","tamara@gmail.com", "people","ft tâmara");
+		Professor prof3 = new Professor(null,"Ana luiza","ana@gmail.com", "iftm","ft ana");
+		Professor prof4 = new Professor(null,"Bruna","bruna@gmail.com", "people","ft bruna");
+		Professor prof5 = new Professor(null,"Camila","camila@gmail.com", "iftm","ft camila");
+		Professor prof6 = new Professor(null,"Eriele","eriele@gmail.com", "upr","ft eriele");
 		
 		Disciplina disc1 = new Disciplina(null, "TCC", "foto da disciplina", prof1);
 		Disciplina disc2 = new Disciplina(null, "IA", "foto de IA", prof1);
@@ -90,7 +94,7 @@ public class DoctrinabackendApplication implements CommandLineRunner {
 		Aluno aluno1 = new Aluno(null, "Jaqueline Neves", "jaque@gmail.com", "iftm", FormaAprendizagem.VIDEO, 2, "foto de perfil jaque");
 		Aluno aluno2 = new Aluno(null, "Juliana Cristina", "juliana@gmail.com", "ufu", FormaAprendizagem.LEITURA, 3, "foto de perfil Juliana");
 
-		professorRepository.saveAll(Arrays.asList(prof1, prof2));
+		professorRepository.saveAll(Arrays.asList(prof1, prof2, prof3, prof4, prof5, prof6));
 		administradorRepository.saveAll(Arrays.asList(adm));
 		disciplinaRepository.saveAll(Arrays.asList(disc1, disc2, disc3));
 		moduloRepository.saveAll(Arrays.asList(mod1, mod2, mod3));
