@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Atividade implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -48,6 +50,14 @@ public class Atividade implements Serializable {
 		this.notaFinal = notaFinal;
 		this.foto = foto;
         this.modulo = modulo;
+	}
+    
+	public List<Pergunta> getPerguntas() {
+		return perguntas;
+	}
+
+	public void setPerguntas(List<Pergunta> perguntas) {
+		this.perguntas = perguntas;
 	}
 
 	public Integer getId() {
