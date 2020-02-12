@@ -19,8 +19,8 @@ public class ModuloResource {
 
 	//lista todos os modulos
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Modulo obj = service.buscar(id);
+	public ResponseEntity<Modulo> find(@PathVariable Integer id) {
+		Modulo obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	}
 }

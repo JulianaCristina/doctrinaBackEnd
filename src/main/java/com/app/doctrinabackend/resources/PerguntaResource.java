@@ -19,8 +19,8 @@ public class PerguntaResource {
 
 	//lista todas as perguntas
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Pergunta obj = service.buscar(id);
+	public ResponseEntity<Pergunta> find(@PathVariable Integer id) {
+		Pergunta obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	}
 }

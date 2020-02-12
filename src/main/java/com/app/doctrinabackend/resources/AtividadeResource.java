@@ -19,8 +19,8 @@ public class AtividadeResource {
 
 	//lista todos as atividades
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Atividade obj = service.buscar(id);
+	public ResponseEntity<Atividade> find(@PathVariable Integer id) {
+		Atividade obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	}
 }

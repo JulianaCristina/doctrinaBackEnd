@@ -16,7 +16,7 @@ public class AtividadeService {
     @Autowired
     private AtividadeRepository repo; //o servico vai acessar o obj de acesso a dados que é o repository
 
-    public Atividade buscar(Integer id){
+    public Atividade find(Integer id){
         Optional<Atividade> obj = repo.findById(id); //o id existe retorna o objeto, se nao tiver ele retorna nulo
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Atividade.class.getName()));
     }

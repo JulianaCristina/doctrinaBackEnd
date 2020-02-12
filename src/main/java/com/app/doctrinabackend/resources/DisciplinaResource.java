@@ -19,8 +19,8 @@ public class DisciplinaResource {
 
 	//lista todos os professores
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Disciplina obj = service.buscar(id);
+	public ResponseEntity<Disciplina> find(@PathVariable Integer id) {
+		Disciplina obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	}
 }

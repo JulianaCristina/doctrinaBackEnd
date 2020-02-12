@@ -16,7 +16,7 @@ public class PerguntaService {
     @Autowired
     private PerguntaRepository repo; //o servico vai acessar o obj de acesso a dados que é o repository
 
-    public Pergunta buscar(Integer id){
+    public Pergunta find(Integer id){
     	Optional<Pergunta> obj = repo.findById(id); //o id existe retorna o objeto, se nao tiver ele retorna nulo
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pergunta.class.getName()));
     }

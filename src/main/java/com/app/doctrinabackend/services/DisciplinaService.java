@@ -15,7 +15,7 @@ public class DisciplinaService {
     @Autowired
     private DisciplinaRepository repo; //o servico vai acessar o obj de acesso a dados que é o repository
 
-    public Disciplina buscar(Integer id){
+    public Disciplina find(Integer id){
         Optional<Disciplina> obj = repo.findById(id); //o id existe retorna o objeto, se nao tiver ele retorna nulo
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Disciplina.class.getName()));
     }

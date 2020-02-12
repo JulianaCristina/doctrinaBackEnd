@@ -16,7 +16,7 @@ public class ModuloService {
     @Autowired
     private ModuloRepository repo; //o servico vai acessar o obj de acesso a dados que é o repository
 
-    public Modulo buscar(Integer id){
+    public Modulo find(Integer id){
     	Optional<Modulo> obj = repo.findById(id); //o id existe retorna o objeto, se nao tiver ele retorna nulo
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Modulo.class.getName()));
     }

@@ -16,7 +16,7 @@ public class AlunoService {
     @Autowired
     private AlunoRepository repo; //o servico vai acessar o obj de acesso a dados que é o repository
 
-    public Aluno buscar(Integer id){
+    public Aluno find(Integer id){
     	Optional<Aluno> obj = repo.findById(id); //o id existe retorna o objeto, se nao tiver ele retorna nulo
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName()));
     }
