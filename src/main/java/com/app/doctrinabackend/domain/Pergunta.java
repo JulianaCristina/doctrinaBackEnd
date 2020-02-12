@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pergunta implements Serializable {
@@ -26,7 +26,7 @@ public class Pergunta implements Serializable {
 	private double pontosPergunta;
 	
 	// uma pergunta não pode pertencer a mais de uma atividade
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="atividade_id")
     private Atividade atividade;

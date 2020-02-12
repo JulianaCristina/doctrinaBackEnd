@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Disciplina implements Serializable {
@@ -33,7 +32,6 @@ public class Disciplina implements Serializable {
     private Professor professor;
 
     // disciplina tem varios modulos, foi mapeado pelo campo disciplina
-    @JsonManagedReference
     @OneToMany(mappedBy = "disciplina")
     private List<Modulo> modulos = new ArrayList<>();
 

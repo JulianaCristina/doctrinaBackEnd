@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.doctrinabackend.domain.Modulo;
-import com.app.doctrinabackend.domain.Professor;
 import com.app.doctrinabackend.repositories.ModuloRepository;
 import com.app.doctrinabackend.services.exceptions.ObjectNotFoundException;
 

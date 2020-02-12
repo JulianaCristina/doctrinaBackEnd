@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +15,8 @@ import javax.persistence.OneToMany;
 
 import com.app.doctrinabackend.domain.enums.NivelDificuldade;
 import com.app.doctrinabackend.domain.enums.Tag;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Modulo implements Serializable {
@@ -48,13 +47,13 @@ public class Modulo implements Serializable {
      */
     
     // modulo tem varias atividades, foi mapeado pelo campo modulo
- 	@JsonBackReference
+ 	@JsonIgnore
     @OneToMany(mappedBy = "modulo")
  	private List<Atividade> atividades = new ArrayList<>();
  	
 
     // modulo tem 1 disciplina
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="disciplina_id")
     private Disciplina disciplina;
