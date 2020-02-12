@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import com.app.doctrinabackend.domain.enums.NivelDificuldade;
 import com.app.doctrinabackend.domain.enums.Tag;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Modulo implements Serializable {
@@ -33,7 +34,11 @@ public class Modulo implements Serializable {
     private double notaModulo;
     private Integer nivelDificuldade; //aqui no codigo vai ser armazenado como um inteiro, porem para o mundo externo a classe vai expor um dado NivelDificuldade
     private Integer feromonio;
+    
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataReforco;
+    
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date tempoSemReforco;
     
     /*SQL TESTE*/
