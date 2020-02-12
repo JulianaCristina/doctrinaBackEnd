@@ -43,7 +43,8 @@ public class Modulo implements Serializable {
      */
     
     // modulo tem varias atividades, foi mapeado pelo campo modulo
- 	@OneToMany(mappedBy = "modulo")
+ 	@JsonBackReference
+    @OneToMany(mappedBy = "modulo")
  	private List<Atividade> atividades = new ArrayList<>();
  	
 

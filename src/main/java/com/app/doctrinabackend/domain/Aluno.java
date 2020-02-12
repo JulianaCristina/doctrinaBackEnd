@@ -27,7 +27,6 @@ public class Aluno implements Serializable {
     private Integer xp;
     private String foto;
     
-	@JsonIgnore
     @OneToMany(mappedBy="id.aluno")
     private Set<NotaDisciplina> notasDisc = new HashSet<>();
     

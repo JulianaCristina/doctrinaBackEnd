@@ -5,10 +5,13 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class NotaDisciplina implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@EmbeddedId
 	private NotaDisciplinaPK id = new NotaDisciplinaPK();
 	
@@ -25,6 +28,7 @@ public class NotaDisciplina implements Serializable {
 		this.notaDisciplina = notaDisciplina;
 	}
 	
+	@JsonIgnore
 	public Aluno getAluno() {
 		return id.getAluno();
 	}
