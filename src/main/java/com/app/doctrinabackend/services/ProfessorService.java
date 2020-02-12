@@ -3,10 +3,12 @@ package com.app.doctrinabackend.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.app.doctrinabackend.domain.Professor;
 import com.app.doctrinabackend.repositories.ProfessorRepository;
+import com.app.doctrinabackend.services.exceptions.DataIntegrityException;
 import com.app.doctrinabackend.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -31,6 +33,16 @@ public class ProfessorService {
     	find(obj.getId()); // o find já vê se o id existe e se não existir retorna uma excessao
     	return repo.save(obj); //se o id não for nulo insere
     }
-    
+
+    //DELETE
+    public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir um Professor que ministre alguma Disciplina");
+		}
+	}  
     
 }
